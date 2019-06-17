@@ -1,13 +1,22 @@
 <html>
+<head>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
   <form action="/doratings" enctype=multipart/form-data method="post" id="doit">
     <input type="submit" value="Go">
-    <textarea name="cardnames" value="stuff"></textarea>
+    <textarea name="cardnames" class="textarea" value="serratheben"></textarea>
   </form>
   <script src="{{ url_for('static', filename='jquery.js') }}" type="text/javascript"></script>
   <script src="{{ url_for('static', filename='picklr.js') }}" type="text/javascript"></script>
 
-  <div id="content">
-    <p>whatev</p>
-  </div>
+  <table>
+    <thead></thead>
+    <tbody id="content">
+
+    </tbody>
+  </table>
 
 </html>

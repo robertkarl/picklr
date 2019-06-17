@@ -27,3 +27,18 @@ This is not affiliated with Wizards of the Coast.
 Card ratings from Frank Karsten's [Channel Fireball article](https://www.channelfireball.com/articles/a-very-early-pick-order-for-modern-horizons-draft/).
 
 Ratings spreadsheet is on Google Sheets [here](https://docs.google.com/spreadsheets/d/e/2PACX-1vRiopQuQgB3fw_X4GNFIBJw5QMHmJJREGBFDZJwuYCwNGsU59rr_O1wc0u1RxV3xL602eHYQlax8HGv/pubhtml).
+
+
+# The Combo
+Deploying multiple flask apps with nginx and uwsgi
+
+- Run the flask app with uwsgi. In your .ini use `mount = /desired_prefix=your_flask.app:app` or thereabouts.
+- In your nginx config, use 
+  ```
+  location /picklr/ {
+      include uwsgi_params;
+      uwsgi_pass unix:/home/rk/code/picklr/picklr.sock;
+  }
+  ```
+  or thereabouts.
+
