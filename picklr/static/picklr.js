@@ -9,7 +9,8 @@ var URL_PREFIX = URL_PREFIX || '';
             success: function(data) {
                 $('#content').html('');
                 for (item in data) {
-                    var name = $('<td>' + data[item][0] + '</td>');
+                    var nameText = data[item][0];
+                    var name = $('<td><a href="https://scryfall.com/search?q=set:mh1 ' + nameText + '">' + nameText + '</a></td>');
                     var rating = $('<td>' + data[item][1] + '</td>');
                     var row = $('<tr>');
                     row.append(name);

@@ -6,6 +6,8 @@ import flask
 
 Card = collections.namedtuple('Card', 'Card,Rating,Cost,Rarity,Frank,Draftsim,Draftaholics,Goldadj'.split(','))
 
+CardLinks = {}
+
 def get_cards(fname):
     cards = []
     with open(fname) as f:
