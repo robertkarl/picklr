@@ -1,4 +1,4 @@
-![demo.png]
+![Screenshot of picklr.](screenshot.png)
 # What's this?
 
 Web app that emits Modern Horizons "pack one, pick one" ratings based on card titles.
