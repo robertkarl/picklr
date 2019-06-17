@@ -1,8 +1,9 @@
 var ENTERKEY = 13;
+var URL_PREFIX = URL_PREFIX || '';
 (function() {
   var do_submit = function(frm) {
     $.ajax({
-      url: '/ratings/mh1',
+      url: URL_PREFIX + '/ratings/mh1',
       data: frm.serialize(),
       method: 'post',
       success: function(data) {

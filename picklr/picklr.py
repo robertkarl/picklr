@@ -41,6 +41,11 @@ def ratings(blob: str, cards):
     return flask.jsonify(result)
 
 app = flask.Flask(__name__)
+URL_PREFIX_KEY = 'URL_PREFIX'
+if URL_PREFIX_KEY in os.environ:
+    app.config.update(URL_PREFIX=os.environ[URL_PREFIX_KEY])
+if URL_PREFIX_KEY not in app.config:
+    app.config[URL_PREFIX_KEY] = ''
 
 @app.route('/ratings/mh1', methods=["POST"])
 def do_ratings():
@@ -49,7 +54,7 @@ def do_ratings():
 
 @app.route('/', methods=["GET"])
 def index():
-    return flask.render_template('main.html')
+    return flask.render_template('main.html', URL_PREFIX=app.config['URL_PREFIX'])
 
 CARDS_FNAME = os.path.join(os.path.dirname(__file__), 'ratings.csv')
 cards = get_cards(CARDS_FNAME)
