@@ -1,0 +1,3 @@
+recursive-include picklr/templates *
+recursive-include picklr/static *
+include picklr/ratings.csv
