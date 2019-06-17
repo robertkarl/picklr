@@ -19,8 +19,9 @@ def ratings(blob: str, cards):
     lines = str(blob).strip().split('\n')
     lines = [i.strip() for i in lines]
     ans = []
-    print(lines)
     for frag in lines:
+        if not frag.strip():
+            continue
         for card in cards:
             found = False
             if frag.lower() in card.Card.lower():
@@ -35,12 +36,13 @@ def ratings(blob: str, cards):
     ans = sorted(ans, key=lambda x: float(x.Rating), reverse=True)
     result = []
     for c in ans:
-        result.append("{} - {}".format(c.Card, c.Rating))
+        row_contents = (c.Card, str(c.Rating))
+        result.append(row_contents)
     return flask.jsonify(result)
 
 app = flask.Flask(__name__)
 
-@app.route('/doratings', methods=["POST"])
+@app.route('/ratings/mh1', methods=["POST"])
 def do_ratings():
     req = flask.request
     return ratings(req.values['cardnames'], cards)
