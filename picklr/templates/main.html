@@ -1,13 +1,5 @@
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link crossorigin="anonymous"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          rel="stylesheet">
-</head>
-<body>
-
+{% extends "base.html" %}
+{% block content %}
 <div class="container-fluid">
     <h5>Modern Horizons Pack 1, Pick 1 Ratings</h5>
     <form action="/doratings" class="col" enctype=multipart/form-data id="doit" method="post">
@@ -45,12 +37,13 @@ the benevolent</textarea>
         <a href="https://github.com/robertkarl/picklr">View the code on Github</a>
     </li>
 </ul>
-    </footer>
-</body>
+</footer>
+{% endblock %}
+{% block footer %}
 <script>
     var URL_PREFIX = '{{ URL_PREFIX }}';
 
 </script>
-<script src="{{ url_for('static', filename='jquery.js') }}" type="text/javascript"></script>
 <script src="{{ url_for('static', filename='picklr.js') }}" type="text/javascript"></script>
+{% endblock %}
 </html>

@@ -2,6 +2,7 @@ import collections
 import csv
 import os
 import flask
+from picklr import tricks
 
 
 Card = collections.namedtuple('Card', 'Card,Rating,Cost,Rarity,Frank,Draftsim,Draftaholics,Goldadj'.split(','))
@@ -56,7 +57,16 @@ def do_ratings():
 
 @app.route('/', methods=["GET"])
 def index():
-    return flask.render_template('main.html', URL_PREFIX=app.config['URL_PREFIX'])
+    return flask.render_template('main.html', URL_PREFIX=app.config['URL_PREFIX'], colors=COLORS)
+
+COLORS = 'white black red blue green'.split()
+
+@app.route('/tricks/mh1/<color>')
+def tricks_route(color):
+    assert color.lower() in COLORS
+    img_strs = tricks.get_images(color)
+    result = flask.render_template("tricks.html", URL_PREFIX=app.config[URL_PREFIX_KEY], card_infos=img_strs, colors=COLORS)
+    return result
 
 CARDS_FNAME = os.path.join(os.path.dirname(__file__), 'ratings.csv')
 cards = get_cards(CARDS_FNAME)

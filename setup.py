@@ -12,5 +12,6 @@ setup(
     zip_safe=False,
     install_requires=[
         "flask==1.0.2",
+        "scrython",
     ],
 )
