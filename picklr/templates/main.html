@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link crossorigin="anonymous"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -8,23 +9,20 @@
 <body>
 
 <div class="container-fluid">
-    <h1>Modern Horizons</h1>
-    <h5>Lookup Pack 1, Pick 1 Ratings</h5>
+    <h5>Modern Horizons Pack 1, Pick 1 Ratings</h5>
     <form action="/doratings" class="col" enctype=multipart/form-data id="doit" method="post">
         <div class="form-group">
 <textarea class="form-control" id="cards-input" name="cardnames" rows="3" value="serratheben">
 thestorm
 man-o-war
 the benevolent</textarea>
-            <small class="form-text text-muted">Partial matches are OK. Spaces and apostrophes may be omitted. Pressing "Enter" updates
-                the table too.
-            </small>
+            <small class="form-text text-muted">Pressing "Enter" updates the table too.</small>
             <button class="btn btn-primary">Submit</button>
             <button id="clear-text" class="btn btn-danger">Clear</button>
         </div>
     </form>
 </div>
-<table class="table">
+<table class="table table-sm">
     <thead class="thead-light">
     <th scope="col">Name</th>
     <th scope="col">Rating</th>
@@ -32,7 +30,8 @@ the benevolent</textarea>
     <tbody id="content">
     </tbody>
 </table>
-<ul class="list-group m-5">
+<footer>
+<ul class="list-group mt-5 p-2">
     <li class="list-group-item">
         <a href="https://www.channelfireball.com/articles/a-very-early-pick-order-for-modern-horizons-draft/">Article by
             Frank Karsten</a>
@@ -46,6 +45,7 @@ the benevolent</textarea>
         <a href="https://github.com/robertkarl/picklr">View the code on Github</a>
     </li>
 </ul>
+    </footer>
 </body>
 <script>
     var URL_PREFIX = '{{ URL_PREFIX }}';

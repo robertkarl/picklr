@@ -62,5 +62,5 @@ CARDS_FNAME = os.path.join(os.path.dirname(__file__), 'ratings.csv')
 cards = get_cards(CARDS_FNAME)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0")
 
