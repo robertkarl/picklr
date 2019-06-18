@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<ul>
+        {% for card in card_infos %}
+        <li><a class="col" href="https://scryfall.com/search?q={{ card.Card }}">{{ card.Card }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
