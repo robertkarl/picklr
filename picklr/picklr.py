@@ -68,6 +68,12 @@ def tricks_route(color):
     result = flask.render_template("tricks.html", URL_PREFIX=app.config[URL_PREFIX_KEY], card_infos=img_strs, colors=COLORS)
     return result
 
+@app.route('/top_by_rarity/<rarity>')
+def top_by_rarity(rarity):
+    cards = tricks.top_by_rating(rarity, 15)
+    result = flask.render_template("top_by_rarity.html", URL_PREFIX=app.config[URL_PREFIX_KEY], card_infos=cards, colors=COLORS)
+    return result
+
 CARDS_FNAME = os.path.join(os.path.dirname(__file__), 'ratings.csv')
 cards = get_cards(CARDS_FNAME)
 

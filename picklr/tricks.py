@@ -6,6 +6,8 @@ import scrython
 import asyncio
 from pkg_resources import resource_filename
 
+from picklr import picklr
+
 CRITERIA_FORMAT = "(set:mh1 and (rarity:uncommon or rarity:common) color:{}) and ((type:instant or o:flas) and -type:sorcery)"
 
 def get_images(color: str):
@@ -33,3 +35,7 @@ def get_images(color: str):
             ans.append(obj)
         pickle.dump(ans, open(fname, 'bw'))
         return ans
+
+def top_by_rating(rarity, top_count):
+    l = list(filter(lambda x:x.Rarity == rarity, picklr.cards))
+    return l[:top_count]
