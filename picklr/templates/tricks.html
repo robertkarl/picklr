@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        {% for card in card_infos %}
+        <a class="col" href="{{ card.card_uri }}"><img style="max-width:190px" src="{{ card.image_uri }}"></a>
+        {% endfor %}
+    </div>
+{% endblock %}
