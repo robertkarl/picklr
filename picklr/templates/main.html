@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container-fluid">
-    <h5>Modern Horizons Pack 1, Pick 1 Ratings</h5>
+    <h5>{{ set_human_readable_name }} Pack 1, Pick 1 Ratings</h5>
     <form action="/doratings" class="col" enctype=multipart/form-data id="doit" method="post">
         <div class="form-group">
 <textarea class="form-control" id="cards-input" name="cardnames" rows="3" value="serratheben">
@@ -17,6 +17,7 @@ the benevolent</textarea>
 <table class="table table-sm">
     <thead class="thead-light">
     <th scope="col">Name</th>
+    <th scope="col">Card Image</th>
     <th scope="col">Rating</th>
     </thead>
     <tbody id="content">
@@ -42,7 +43,6 @@ the benevolent</textarea>
 {% block footer %}
 <script>
     var URL_PREFIX = '{{ URL_PREFIX }}';
-
 </script>
 <script src="{{ url_for('static', filename='picklr.js') }}" type="text/javascript"></script>
 {% endblock %}
