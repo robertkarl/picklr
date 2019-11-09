@@ -1,6 +1,5 @@
 import os
 import pickle
-import pkg_resources
 
 import scrython
 import asyncio
@@ -10,32 +9,34 @@ from picklr import picklr
 
 CRITERIA_FORMAT = "(set:mh1 and (rarity:uncommon or rarity:common) color:{}) and ((type:instant or o:flas) and -type:sorcery)"
 
+
 def get_images(color: str):
     """
     :param color:
     :return: list of objects, one per card. each has links to content
     """
-    fname = resource_filename('picklr', '{}.pkl'.format(color))
+    fname = resource_filename("picklr", "{}.pkl".format(color))
     if os.path.exists(fname):
-        return pickle.load(open(fname, 'br'))
+        return pickle.load(open(fname, "br"))
     else:
         q = CRITERIA_FORMAT.format(color)
-        if color.lower() == 'red':
-            q = q + (' or (set:mh1 quakefoot)')
-        elif color.lower() == 'blue':
-            q = q + (' or (set:mh1 windcaller aven)')
+        if color.lower() == "red":
+            q = q + (" or (set:mh1 quakefoot)")
+        elif color.lower() == "blue":
+            q = q + (" or (set:mh1 windcaller aven)")
         asyncio.set_event_loop(asyncio.new_event_loop())
         result = scrython.cards.Search(q=q)
-        print(result.data()[0]['image_uris'])
+        print(result.data()[0]["image_uris"])
         ans = []
         for card in result.data():
             obj = {}
-            obj['image_uri'] = card['image_uris']['normal']
-            obj['card_uri'] = card['scryfall_uri']
+            obj["image_uri"] = card["image_uris"]["normal"]
+            obj["card_uri"] = card["scryfall_uri"]
             ans.append(obj)
-        pickle.dump(ans, open(fname, 'bw'))
+        pickle.dump(ans, open(fname, "bw"))
         return ans
 
+
 def top_by_rating(rarity, top_count):
-    l = list(filter(lambda x:x.Rarity == rarity, picklr.cards))
+    l = list(filter(lambda x: x.Rarity == rarity, picklr.cards))
     return l[:top_count]

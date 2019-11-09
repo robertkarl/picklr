@@ -1,2 +1,4 @@
-flask
-ipython
+flask==1.1
+flask-migrate
+flask-sqlalchemy
+scrython

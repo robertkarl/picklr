@@ -38,7 +38,11 @@ Deploying multiple flask apps with nginx and uwsgi
   location /picklr/ {
       include uwsgi_params;
       uwsgi_pass unix:/home/rk/code/picklr/picklr.sock;
-  }
+  
   ```
   or thereabouts.
 
+
+# RK's deploy notes
+make clean
+make deploy

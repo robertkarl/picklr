@@ -1,19 +1,26 @@
 var ENTERKEY = 13;
 var URL_PREFIX = URL_PREFIX || '';
+console.log(URL_PREFIX);
 (function() {
     var do_submit = function(frm) {
+        var ajax_url = 'ratings'; // it matters whether or not this begins with a slash
+        console.log(ajax_url);
         $.ajax({
-            url: URL_PREFIX + '/ratings/mh1',
+            url: ajax_url,
             data: frm.serialize(),
             method: 'post',
             success: function(data) {
                 $('#content').html('');
-                for (item in data) {
-                    var nameText = data[item][0];
-                    var name = $('<td><a href="https://scryfall.com/search?q=set:mh1 ' + nameText + '">' + nameText + '</a></td>');
-                    var rating = $('<td>' + data[item][1] + '</td>');
+                console.log(data);
+                for (index in data) {
+                    var item = data[index];
+                    var nameText = item.Card;
+                    var name = $('<td><a href="https://scryfall.com/search?q=set:mh1 ' + item.Card + '">' + item.Card + '</a></td>');
+                    var rating = $('<td>' + item.Rating + '</td>');
+                    var img = $('<a class="col" href="' + item.uri + '"><img style="max-width:190px" src="'+ item.image_uri + '"></a>');
                     var row = $('<tr>');
                     row.append(name);
+                    row.append(img)
                     row.append(rating);
                     $('#content').append(row);
                 }
