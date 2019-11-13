@@ -2,9 +2,8 @@ import csv
 import os
 import flask
 
-import config
 from picklr import tricks
-import card
+from picklr import card
 
 _KNOWN_FIELDS = "Card,Rating,Cost,Rarity,Frank,Draftsim,Draftaholics,Goldadj".split(",")
 
@@ -79,7 +78,7 @@ def ratings(blob: str, cards, setname="mh1"):
 class SetPicksBlueprintHelper:
     def index(self):
         return flask.render_template(
-            "main.html",
+            "picks.html",
             URL_PREFIX=self.name,
             colors=COLORS,
             set_human_readable_name=self.readable,
@@ -104,8 +103,7 @@ class SetPicksBlueprintHelper:
 
 
 def get_app():
-    app = flask.Flask(__name__)
-    app.config.from_object(config.Config)
+    from picklr.app import app
     URL_PREFIX_KEY = "URL_PREFIX"
     if URL_PREFIX_KEY in os.environ:
         app.config.update(URL_PREFIX=os.environ[URL_PREFIX_KEY])
@@ -134,6 +132,10 @@ def get_app():
             colors=COLORS,
         )
         return result
+
+    @app.route('/')
+    def picklr_main():
+        return flask.render_template('top_by_rarity.html')
 
     mh1bp = SetPicksBlueprintHelper("mh1", "Modern Horizons")
     mh1bp.do_register(app)
