@@ -1,13 +1,12 @@
-import collections
 import csv
 import os
 import flask
 
 import config
 from picklr import tricks
+import card
 
 _KNOWN_FIELDS = "Card,Rating,Cost,Rarity,Frank,Draftsim,Draftaholics,Goldadj".split(",")
-Card = collections.namedtuple("Card", ("Card", "Rating"))
 
 SET_NAMES = ["mh1", "eld"]
 _SET_HUMAN_READABLES = ["Modern Horizons", "Throne of Eldraine"]
@@ -30,7 +29,7 @@ def get_cards(fname):
             else:
                 name = cd["Card"]
             rating = cd["Rating"]
-            cards.append(Card(name, rating))
+            cards.append(card.Card(name, rating))
     return cards
 
 
@@ -143,6 +142,3 @@ def get_app():
     return app
 
 
-if __name__ == "__main__":
-    app = get_app()
-    app.run(host="0.0.0.0")

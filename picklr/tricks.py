@@ -5,7 +5,7 @@ import scrython
 import asyncio
 from pkg_resources import resource_filename
 
-from picklr import picklr
+from picklr import blueprints
 
 CRITERIA_FORMAT = "(set:mh1 and (rarity:uncommon or rarity:common) color:{}) and ((type:instant or o:flas) and -type:sorcery)"
 
@@ -38,5 +38,5 @@ def get_images(color: str):
 
 
 def top_by_rating(rarity, top_count):
-    l = list(filter(lambda x: x.Rarity == rarity, picklr.cards))
+    l = list(filter(lambda x: x.Rarity == rarity, blueprints.cards))
     return l[:top_count]
