@@ -10,7 +10,7 @@ run_devel:
 run_wsgi:
 	uwsgi --ini picklr.ini
 docker_image:
-	docker build -t picklr:latest .
+	docker build -t robertkarl/picklr:latest .
 run_docker:
 	docker run --publish-all --expose 5000 picklr:latest
 .PHONY: wheel clean docker_image

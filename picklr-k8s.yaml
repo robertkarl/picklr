@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: picklr
+spec:
+  ports:
+  - port: 80
+    targetPort: 5678
+  selector:
+    app: picklr
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: picklr
+spec:
+  selector:
+    matchLabels:
+      app: picklr
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: picklr
+    spec:
+      containers:
+      - name: picklr
+        image: robertkarl/picklr
+        ports:
+        - containerPort: 5000
