@@ -13,5 +13,8 @@ setup(
     install_requires=[
         "flask==1.1",
         "scrython",
+        "flask-sqlalchemy",
+        "flask-migrate",
+        "uwsgi",
     ],
 )
