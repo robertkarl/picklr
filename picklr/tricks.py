@@ -38,5 +38,5 @@ def get_images(color: str):
 
 
 def top_by_rating(rarity, top_count):
-    l = list(filter(lambda x: x.Rarity == rarity, blueprints.cards))
+    l = list(filter(lambda x: x.Rarity == rarity, blueprints._cards))
     return l[:top_count]

@@ -21,18 +21,6 @@
                 <a class="nav-link" href="{{ url_for('tricks_route', color=color) }}">{{ color }} tricks</a>
             </li>
             {% endfor %}
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('top_by_rarity', rarity='M') }}">top-M</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('top_by_rarity', rarity='R') }}">top-R</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('top_by_rarity', rarity='U') }}">top-U</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('top_by_rarity', rarity='C') }}">top-C</a>
-            </li>
         </ul>
     </div>
 </nav>
