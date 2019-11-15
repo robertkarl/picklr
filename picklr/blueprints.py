@@ -1,6 +1,8 @@
 import csv
 import os
 import flask
+import asyncio
+import scrython
 
 from picklr import tricks
 from picklr import card
@@ -50,23 +52,19 @@ def ratings(blob: str, cards, setname="mh1"):
             continue
         for card in cards:
             found = False
-            if frag.lower() in card.Card.lower():
+            if frag.lower() in card.name.lower():
                 found = True
-            elif frag.lower() in card.Card.replace("'", "").lower():
+            elif frag.lower() in card.name.replace("'", "").lower():
                 found = True
-            elif frag.lower() in card.Card.replace(" ", "").lower():
+            elif frag.lower() in card.name.replace(" ", "").lower():
                 found = True
             if found:
-                import asyncio
-
                 asyncio.set_event_loop(asyncio.new_event_loop())
-                import scrython
-
-                result = scrython.cards.Search(q=card.Card)
+                result = scrython.cards.Search(q=card.name)
                 thecard = result.data()[0]
                 ans_obj = {}
-                ans_obj["Card"] = card.Card
-                ans_obj["Rating"] = card.Rating
+                ans_obj["Card"] = card.name
+                ans_obj["Rating"] = card.rating
                 ans_obj["image_uri"] = thecard["image_uris"]["normal"]
                 ans_obj["uri"] = thecard["scryfall_uri"]
                 ans.append(ans_obj)
@@ -104,6 +102,7 @@ class SetPicksBlueprintHelper:
 
 def get_app():
     from picklr import app
+
     URL_PREFIX_KEY = "URL_PREFIX"
     if URL_PREFIX_KEY in os.environ:
         app.config.update(URL_PREFIX=os.environ[URL_PREFIX_KEY])
@@ -133,14 +132,12 @@ def get_app():
         )
         return result
 
-    @app.route('/')
+    @app.route("/")
     def picklr_main():
-        return flask.render_template('top_by_rarity.html')
+        return flask.render_template("top_by_rarity.html")
 
     mh1bp = SetPicksBlueprintHelper("mh1", "Modern Horizons")
     mh1bp.do_register(app)
     eldbp = SetPicksBlueprintHelper("eld", "Throne of Eldraine")
     eldbp.do_register(app)
     return app
-
-
