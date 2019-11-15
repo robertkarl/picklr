@@ -9,4 +9,8 @@ run_devel:
 	FLASK_ENV=development FLASK_APP=picklr.picklr flask run
 run_wsgi:
 	uwsgi --ini picklr.ini
-.PHONY: wheel clean
+docker_image:
+	docker build -t robertkarl/picklr:latest .
+run_docker:
+	docker run --publish-all --expose 5000 picklr:latest
+.PHONY: wheel clean docker_image
