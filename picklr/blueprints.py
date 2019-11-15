@@ -103,7 +103,7 @@ class SetPicksBlueprintHelper:
 
 
 def get_app():
-    from picklr.app import app
+    from picklr import app
     URL_PREFIX_KEY = "URL_PREFIX"
     if URL_PREFIX_KEY in os.environ:
         app.config.update(URL_PREFIX=os.environ[URL_PREFIX_KEY])
