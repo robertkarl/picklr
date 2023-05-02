@@ -11,7 +11,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        "flask==1.1",
+        "flask==2.2.5",
         "scrython",
         "flask-sqlalchemy",
         "flask-migrate",
